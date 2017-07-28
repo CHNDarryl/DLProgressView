@@ -18,6 +18,7 @@
     [super viewDidLoad];
     DLBackProgressView *backGroundProgressView = [[DLBackProgressView alloc]initWithFrame:CGRectMake(0, 0, 200, 200) lineWidth:20];
     self.view.backgroundColor = [UIColor blackColor];
+    backGroundProgressView.bottomLineColor = [UIColor redColor];
     backGroundProgressView.center = self.view.center;
     backGroundProgressView.progress = 0.5;
     backGroundProgressView.textString = [NSString stringWithFormat:@"%.0f%%",backGroundProgressView.progress * 100];
