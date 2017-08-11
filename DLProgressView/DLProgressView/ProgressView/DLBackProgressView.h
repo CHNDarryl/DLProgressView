@@ -22,4 +22,10 @@
 @property (nonatomic, strong) UIColor *textColor;    //默认白色
 /** 中间文字的大小*/
 @property (nonatomic, assign) CGFloat textSize;      //默认42
+
+///如果默认从顶部开始顺时针画全圆圈，则不需要调整
+//开始的角度数（角度逆时针开始的）
+@property (nonatomic,assign)CGFloat startAngle;
+//结束的角度数
+@property (nonatomic,assign)CGFloat endAngle;
 @end

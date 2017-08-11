@@ -7,7 +7,9 @@
 //
 
 #import "DLBackProgressView.h"
-
+#define degreesToRadians(x) (M_PI*(x)/180.0) //把角度转换成PI的方式
+#define DEFAULT_STARTANGLE   -90  //默认开始度数
+#define DEFAULT_ENDANGLE     270  //默认结束度数
 @interface DLBackProgressView()
 @property(nonatomic, strong) UILabel *label;
 @property(nonatomic, assign) CGFloat lineWidth;
@@ -125,4 +127,57 @@
     self.label.textColor =textColor;
     [self setNeedsDisplay];
 }
+//设置 圆环的角度
+- (void)setStartAngle:(CGFloat)startAngle{
+    
+    if ([NSString stringWithFormat:@"%f",_endAngle] == nil) {
+        
+        if (_startAngle != startAngle) {
+            _startAngle = startAngle;
+            //从新定义 开始 角度
+            UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.frame.size.width/2, self.frame.size.width/2) radius:(self.frame.size.width - _lineWidth)/2 startAngle:degreesToRadians(_startAngle) endAngle:degreesToRadians(DEFAULT_ENDANGLE) clockwise:YES];
+            _shapeLayer.path =[path CGPath];
+            _foreLayer.path = [path CGPath];
+            
+            
+        }
+    }else{
+        
+        if (_startAngle != startAngle) {
+            _startAngle = startAngle;
+            //从新定义 开始 角度
+            UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.frame.size.width/2, self.frame.size.width/2) radius:(self.frame.size.width - _lineWidth)/2 startAngle:degreesToRadians(_startAngle) endAngle:degreesToRadians(_endAngle) clockwise:YES];
+            _shapeLayer.path =[path CGPath];
+            _foreLayer.path = [path CGPath];
+            
+            
+        }
+    }
+    
+}
+- (void)setEndAngle:(CGFloat)endAngle{
+    
+    if ([NSString stringWithFormat:@"%f",_startAngle] == nil) {
+        
+        if (_endAngle != endAngle) {
+            _endAngle = endAngle;
+            //从新定义 结束 角度
+            UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.frame.size.width/2, self.frame.size.width/2) radius:(self.frame.size.width - _lineWidth)/2 startAngle:degreesToRadians(DEFAULT_STARTANGLE) endAngle:degreesToRadians(_endAngle) clockwise:YES];
+            _shapeLayer.path =[path CGPath];
+            _foreLayer.path = [path CGPath];
+        }
+        
+    }else{
+        
+        if (_endAngle != endAngle) {
+            _endAngle = endAngle;
+            //从新定义 结束 角度
+            UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.frame.size.width/2, self.frame.size.width/2) radius:(self.frame.size.width - _lineWidth)/2 startAngle:degreesToRadians(_startAngle) endAngle:degreesToRadians(_endAngle) clockwise:YES];
+            _shapeLayer.path =[path CGPath];
+            _foreLayer.path = [path CGPath];
+        }
+        
+    }
+}
+
 @end
