@@ -93,7 +93,7 @@
     self.label.text = textString;
     [self setNeedsDisplay];
 }
-- (void)setbottomLineColor:(UIColor *)bottomLineColor{
+- (void)setBottomLineColor:(UIColor *)bottomLineColor{
     if (bottomLineColor == _bottomLineColor) {
         return;
     }
